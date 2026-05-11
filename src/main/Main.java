@@ -39,6 +39,7 @@ public class Main {
         System.out.println("\nMemulai " + jumlahPerhitungan + " iterasi perhitungan\n");
 
         List<Thread> daftarThread = new ArrayList<>();
+        List<HitungTask> daftarTask = new ArrayList<>();
 
         for (int i = 1; i <= jumlahPerhitungan; i++) {
             double sisiBangun = random.nextInt(15) + 1;
@@ -56,7 +57,10 @@ public class Main {
             Thread threadPersegi = new Thread(taskPersegi, "Thread-P" + i);
             Thread threadLimas = new Thread(taskLimas, "Thread-L" + i);
 
+            daftarTask.add(taskPersegi);
             daftarThread.add(threadPersegi);
+
+            daftarTask.add(taskLimas);
             daftarThread.add(threadLimas);
 
             threadPersegi.start();
@@ -73,5 +77,11 @@ public class Main {
         }
 
         System.out.println("\nSemua Thread selesai perhitungan");
+        System.out.println("--Hasil Perhitungan--");
+
+        // 3. Fase Mencetak Hasil Detail secara Berurutan
+        for (HitungTask task : daftarTask) {
+            System.out.println(task.getHasilAkhir());
+        }
     }
 }
