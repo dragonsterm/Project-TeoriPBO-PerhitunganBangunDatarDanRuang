@@ -6,7 +6,7 @@ package controller;
 
 import java.util.Scanner;
 import model.Geometri;
-import model.Bangun3D;
+import model.BangunRuang;
 import model.Persegi;
 import model.LimasPersegi;
 
@@ -41,8 +41,8 @@ public class Main {
             System.out.printf("Luas     : %.2f%n", bangun.hitungLuas());
             System.out.printf("Keliling : %.2f%n", bangun.hitungKeliling());
 
-            if (bangun instanceof Bangun3D) {
-                double volume = ((Bangun3D) bangun).hitungVolume();
+            if (bangun instanceof BangunRuang) {
+                double volume = ((BangunRuang) bangun).hitungVolume();
                 System.out.printf("Volume   : %.2f%n", volume);
             }
         }

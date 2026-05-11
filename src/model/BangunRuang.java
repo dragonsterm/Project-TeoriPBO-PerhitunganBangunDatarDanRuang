@@ -8,7 +8,7 @@ package model;
  *
  * @author mahar
  */
-public abstract class Bangun3D implements Geometri {
+public abstract class BangunRuang implements Geometri {
     @Override
     public abstract double hitungLuas();
 

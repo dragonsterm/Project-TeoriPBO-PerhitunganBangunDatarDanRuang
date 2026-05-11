@@ -8,7 +8,7 @@ package model;
  *
  * @author mahar
  */
-public class LimasPersegi extends Bangun3D {
+public class LimasPersegi extends BangunRuang {
     private double sisiAlas;
     private double tinggiLimas;
 

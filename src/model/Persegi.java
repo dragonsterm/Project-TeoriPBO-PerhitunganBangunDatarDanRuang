@@ -8,7 +8,7 @@ package model;
  *
  * @author mahar
  */
-public class Persegi extends Bangun2D {
+public class Persegi extends BangunDatar {
     private double sisi;
 
     public Persegi(double sisi) {
