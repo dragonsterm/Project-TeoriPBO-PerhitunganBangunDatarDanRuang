@@ -9,6 +9,6 @@ package model;
  * @author mahar
  */
 public interface Geometri {
-    public double hitungLuas();
-    public double hitungKeliling();
+    double hitungLuas();
+    double hitungKeliling();
 }
