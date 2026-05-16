@@ -1,10 +1,10 @@
 package model;
 
-public class BujurSangkar extends BangunRuang{
+public class PrismaBujurSangkar extends BangunRuang{
     private double sisiAlas;
     private double tinggiPrisma;
 
-    public BujurSangkar(double sisiAlas, double tinggiPrisma) {
+    public PrismaBujurSangkar(double sisiAlas, double tinggiPrisma) {
         this.sisiAlas = sisiAlas;
         this.tinggiPrisma = tinggiPrisma;
     }

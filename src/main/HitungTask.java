@@ -35,12 +35,15 @@ public class HitungTask implements Runnable {
 
             StringBuilder hasil = new StringBuilder();
 
-            hasil.append(namaBenda).append(" => ")
-                    .append(String.format("Luas: %.2f, Keliling: %.2f", luas, keliling));
+            hasil.append(namaBenda).append(" => ");
 
             if (bangun instanceof BangunRuang) {
                 double volume = ((BangunRuang) bangun).hitungVolume();
-                hasil.append(String.format(", Volume: %.2f", volume));
+                hasil.append(String.format("Luas Permukaan: %.2f cm, Total Panjang Rusuk: %.2f cm, Volume: %.2f cm",
+                        luas, keliling, volume));
+            } else {
+                hasil.append(String.format("Luas: %.2f cm, Keliling: %.2f cm",
+                        luas, keliling));
             }
             this.hasilAkhir = hasil.toString();
 

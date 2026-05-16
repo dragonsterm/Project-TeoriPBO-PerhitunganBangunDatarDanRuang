@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
-import model.BujurSangkar;
+import model.PrismaBujurSangkar;
 import model.Geometri;
 import model.Persegi;
 import model.LimasPersegi;
@@ -26,7 +26,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         int jumlahPerhitungan;
-        int pilihanMenu;
+        int pilihanMenu = 0;
         int tasksPerIteration;
 
         do {
@@ -46,12 +46,12 @@ public class Main {
                     break;
                 }
                 if (pilihanMenu < 1 || pilihanMenu > 5) {
-                    System.out.println("Pilihan tidakk valid. Menggunakan pilihan default (4).");
-                    pilihanMenu = 4;
+                    System.out.println("Pilihan tidakk valid. Silahkan coba lagi.");
+                    continue;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Input tidak valid. Menggunakan Pilihan default (4).");
-                pilihanMenu = 4;
+                System.out.println("Pilihan tidakk valid. Silahkan coba lagi.");
+                continue;
             }
 
             System.out.print("Berapa kali perhitugan yang ingin dilakukan = ");
@@ -73,7 +73,7 @@ public class Main {
 
                 if (pilihanMenu == 1 || pilihanMenu == 4) {
                     Geometri bangun = new Persegi(sisiBangun);
-                    String nama = String.format("Persegi ke-%d dengan sisi= %.0f", i, sisiBangun);
+                    String nama = String.format("Persegi ke-%d dengan sisi= %.0f cm", i, sisiBangun);
                     HitungTask task = new HitungTask(bangun, nama);
                     Thread thread = new Thread(task, "Thread-P" + i);
 
@@ -85,7 +85,7 @@ public class Main {
 
                 if (pilihanMenu == 2 || pilihanMenu == 4) {
                     Geometri bangun = new LimasPersegi(sisiBangun, tinggiBangun);
-                    String nama = String.format("Limas Persegi ke-%d dengan sisi= %.0f dan tinggi= %.0f", i, sisiBangun, tinggiBangun);
+                    String nama = String.format("Limas Persegi ke-%d dengan sisi= %.0f cm dan tinggi= %.0f cm", i, sisiBangun, tinggiBangun);
                     HitungTask task = new HitungTask(bangun, nama);
                     Thread thread = new Thread(task, "Thread-L" + i);
 
@@ -96,8 +96,8 @@ public class Main {
                 }
 
                 if (pilihanMenu == 3 || pilihanMenu == 4) {
-                    Geometri bangun = new BujurSangkar(sisiBangun, tinggiBangun);
-                    String nama = String.format("Bujur Sangkar ke-%d dengan sisi= %.0f dan tinggi= %.0f", i, sisiBangun, tinggiBangun);
+                    Geometri bangun = new PrismaBujurSangkar(sisiBangun, tinggiBangun);
+                    String nama = String.format("Prisma Bujur Sangkar ke-%d dengan sisi= %.0f cm dan tinggi= %.0f cm", i, sisiBangun, tinggiBangun);
                     HitungTask task = new HitungTask(bangun, nama);
                     Thread thread = new Thread(task, "Thread-B" + i);
 
