@@ -8,21 +8,12 @@ package geometri;
  *
  * @author mahar
  */
-public class LimasPersegi extends BangunRuang {
-    private double sisiAlas;
+public class LimasPersegi extends Persegi {
     private double tinggiLimas;
 
     public LimasPersegi(double sisiAlas, double tinggiLimas) {
-        this.sisiAlas = sisiAlas;
+        super(sisiAlas);
         this.tinggiLimas = tinggiLimas;
-    }
-
-    public double getSisiAlas() {
-        return sisiAlas;
-    }
-
-    public void setSisiAlas(double sisiAlas) {
-        this.sisiAlas = sisiAlas;
     }
 
     public double getTinggiLimas() {
@@ -35,17 +26,17 @@ public class LimasPersegi extends BangunRuang {
 
     @Override
     public double hitungLuas() {
-        double luasAlas = sisiAlas * sisiAlas;
-        double tinggiSegitiga = Math.sqrt(Math.pow(sisiAlas / 2.0, 2) + Math.pow(tinggiLimas, 2));
-        double luasSelimut = 4 * (0.5 * sisiAlas * tinggiSegitiga);
+        double luasAlas = super.hitungLuas();
+        double tinggiSegitiga = Math.sqrt(Math.pow(sisi / 2.0, 2) + Math.pow(tinggiLimas, 2));
+        double luasSelimut = 4 * (0.5 * sisi * tinggiSegitiga);
         double luas = luasAlas + luasSelimut;
         return luas;
     }
 
     @Override
     public double hitungKeliling() {
-        double kelilingAlas = 4 * sisiAlas;
-        double setengahDiagonalAlas = Math.sqrt(2 * Math.pow(sisiAlas / 2.0, 2));
+        double kelilingAlas = super.hitungKeliling();
+        double setengahDiagonalAlas = Math.sqrt(2 * Math.pow(sisi / 2.0, 2));
         double panjangRusukMiring = Math.sqrt(Math.pow(setengahDiagonalAlas, 2) + Math.pow(tinggiLimas, 2));
         double totalRusukMiring =  4 *  panjangRusukMiring;
         double keliling = kelilingAlas + totalRusukMiring;
@@ -54,7 +45,7 @@ public class LimasPersegi extends BangunRuang {
 
     @Override
     public double hitungVolume() {
-        double volume = (1.0/3.0) * Math.pow(sisiAlas, 2) * tinggiLimas;
+        double volume = (1.0/3.0) * super.hitungLuas() * tinggiLimas;
         return volume;
     }
 }

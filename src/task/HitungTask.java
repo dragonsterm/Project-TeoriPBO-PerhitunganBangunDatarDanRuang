@@ -5,7 +5,8 @@
 package task;
 
 import geometri.Geometri;
-import geometri.BangunRuang;
+import geometri.LimasPersegi;
+import geometri.PrismaBujurSangkar;
 import java.util.Random;
 
 /**
@@ -39,8 +40,8 @@ public class HitungTask implements Runnable {
 
             hasil.append(namaBenda).append(" => ");
 
-            if (bangun instanceof BangunRuang) {
-                volume = ((BangunRuang) bangun).hitungVolume();
+            if (bangun instanceof LimasPersegi || bangun instanceof PrismaBujurSangkar) {
+                volume = bangun.hitungVolume();
                 hasil.append(formatHasil(luas, keliling, volume));
             } else {
                 hasil.append(formatHasil(luas, keliling));

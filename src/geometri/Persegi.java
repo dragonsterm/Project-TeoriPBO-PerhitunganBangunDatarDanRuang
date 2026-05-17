@@ -8,8 +8,8 @@ package geometri;
  *
  * @author mahar
  */
-public class Persegi extends BangunDatar {
-    private double sisi;
+public class Persegi implements Geometri {
+    protected double sisi;
 
     public Persegi(double sisi) {
         this.sisi = sisi;
@@ -33,5 +33,10 @@ public class Persegi extends BangunDatar {
     public double hitungKeliling() {
         double keliling = 4 * sisi;
         return keliling;
+    }
+
+    @Override
+    public double hitungVolume() {
+        return 0;
     }
 }
