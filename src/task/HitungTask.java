@@ -4,8 +4,8 @@
  */
 package task;
 
-import model.Geometri;
-import model.BangunRuang;
+import geometri.Geometri;
+import geometri.BangunRuang;
 import java.util.Random;
 
 /**

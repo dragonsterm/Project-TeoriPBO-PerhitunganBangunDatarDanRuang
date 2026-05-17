@@ -1,4 +1,4 @@
-package model;
+package geometri;
 
 public class PrismaBujurSangkar extends BangunRuang{
     private double sisiAlas;

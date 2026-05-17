@@ -9,10 +9,10 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
-import model.PrismaBujurSangkar;
-import model.Geometri;
-import model.Persegi;
-import model.LimasPersegi;
+import geometri.PrismaBujurSangkar;
+import geometri.Geometri;
+import geometri.Persegi;
+import geometri.LimasPersegi;
 import task.HitungTask;
 
 /**
