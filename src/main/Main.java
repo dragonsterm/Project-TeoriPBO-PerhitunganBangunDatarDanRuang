@@ -13,6 +13,7 @@ import model.PrismaBujurSangkar;
 import model.Geometri;
 import model.Persegi;
 import model.LimasPersegi;
+import task.HitungTask;
 
 /**
  *
@@ -25,9 +26,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        int jumlahPerhitungan;
+        int jumlahPerhitungan, tasksPerIterasi;
         int pilihanMenu = 0;
-        int tasksPerIteration;
 
         do {
             System.out.println("\n-- Perhitungan Persegi, Limas Persegi, dan Bujur Sangkar --");
@@ -118,12 +118,12 @@ public class Main {
             System.out.println("\nSemua Thread selesai perhitungan");
             System.out.println("--Hasil Perhitungan--");
 
-            tasksPerIteration = (pilihanMenu == 4) ? 3 : 1;
+            tasksPerIterasi = (pilihanMenu == 4) ? 3 : 1;
 
             for (int i = 0; i < daftarTask.size(); i++) {
                 System.out.println(daftarTask.get(i).getHasilAkhir());
 
-                if ((i + 1) % tasksPerIteration == 0 && i < daftarTask.size() - 1) {
+                if ((i + 1) % tasksPerIterasi == 0 && i < daftarTask.size() - 1) {
                     System.out.println();
                 }
             }

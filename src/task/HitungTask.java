@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package main;
+package task;
 
 import model.Geometri;
 import model.BangunRuang;
@@ -25,25 +25,25 @@ public class HitungTask implements Runnable {
 
     @Override
     public void run() {
+        double luas, keliling, volume;
+        int waktuProses;
         try {
-            int waktuProses = random.nextInt(4000) + 1000;
+            waktuProses = random.nextInt(4000) + 1000;
 
             Thread.sleep(waktuProses);
 
-            double luas = bangun.hitungLuas();
-            double keliling = bangun.hitungKeliling();
+            luas = bangun.hitungLuas();
+            keliling = bangun.hitungKeliling();
 
             StringBuilder hasil = new StringBuilder();
 
             hasil.append(namaBenda).append(" => ");
 
             if (bangun instanceof BangunRuang) {
-                double volume = ((BangunRuang) bangun).hitungVolume();
-                hasil.append(String.format("Luas Permukaan: %.2f cm, Total Panjang Rusuk: %.2f cm, Volume: %.2f cm",
-                        luas, keliling, volume));
+                volume = ((BangunRuang) bangun).hitungVolume();
+                hasil.append(formatHasil(luas, keliling, volume));
             } else {
-                hasil.append(String.format("Luas: %.2f cm, Keliling: %.2f cm",
-                        luas, keliling));
+                hasil.append(formatHasil(luas, keliling));
             }
             this.hasilAkhir = hasil.toString();
 
