@@ -1,20 +1,12 @@
 package geometri;
 
 public class PrismaBujurSangkar extends BangunRuang{
-    private double sisiAlas;
+    private Persegi alas;
     private double tinggiPrisma;
 
     public PrismaBujurSangkar(double sisiAlas, double tinggiPrisma) {
-        this.sisiAlas = sisiAlas;
+        this.alas = new Persegi(sisiAlas);
         this.tinggiPrisma = tinggiPrisma;
-    }
-
-    public double getSisiAlas() {
-        return sisiAlas;
-    }
-
-    public void setSisiAlas(double sisiAlas) {
-        this.sisiAlas = sisiAlas;
     }
 
     public double getTinggiPrisma() {
@@ -27,15 +19,15 @@ public class PrismaBujurSangkar extends BangunRuang{
 
     @Override
     public double hitungLuas() {
-        double luasAlas = sisiAlas * sisiAlas;
-        double luasDinding = sisiAlas * tinggiPrisma;
+        double luasAlas = alas.hitungLuas();
+        double luasDinding = alas.getSisi() * tinggiPrisma;
         double luasPermukaan = (2 * luasAlas) + (4 * luasDinding);
         return luasPermukaan;
     }
 
     @Override
     public double hitungKeliling() {
-        double totalRusukAlasTutup = 8 * sisiAlas;
+        double totalRusukAlasTutup = 8 * alas.getSisi();
         double totalRusukTegak = 4 * tinggiPrisma;
         double keliling = totalRusukAlasTutup + totalRusukTegak;
         return keliling;
@@ -43,7 +35,7 @@ public class PrismaBujurSangkar extends BangunRuang{
 
     @Override
     public double hitungVolume() {
-        double volume = (sisiAlas * sisiAlas) * tinggiPrisma;
+        double volume = alas.hitungLuas() * tinggiPrisma;
         return volume;
     }
 }

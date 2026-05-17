@@ -9,20 +9,12 @@ package geometri;
  * @author mahar
  */
 public class LimasPersegi extends BangunRuang {
-    private double sisiAlas;
+    private Persegi alas;
     private double tinggiLimas;
 
     public LimasPersegi(double sisiAlas, double tinggiLimas) {
-        this.sisiAlas = sisiAlas;
+        this.alas = new Persegi(sisiAlas);
         this.tinggiLimas = tinggiLimas;
-    }
-
-    public double getSisiAlas() {
-        return sisiAlas;
-    }
-
-    public void setSisiAlas(double sisiAlas) {
-        this.sisiAlas = sisiAlas;
     }
 
     public double getTinggiLimas() {
@@ -35,26 +27,25 @@ public class LimasPersegi extends BangunRuang {
 
     @Override
     public double hitungLuas() {
-        double luasAlas = sisiAlas * sisiAlas;
-        double tinggiSegitiga = Math.sqrt(Math.pow(sisiAlas / 2.0, 2) + Math.pow(tinggiLimas, 2));
-        double luasSelimut = 4 * (0.5 * sisiAlas * tinggiSegitiga);
-        double luas = luasAlas + luasSelimut;
-        return luas;
+        double luasAlas = alas.hitungLuas();
+        double tinggiSegitiga = Math.sqrt(Math.pow(alas.getSisi() / 2.0, 2) + Math.pow(tinggiLimas, 2));
+        double luasSelimut = 4 * (0.5 * alas.getSisi() * tinggiSegitiga);
+        double luasPermukaan = luasAlas + luasSelimut;
+        return luasPermukaan;
     }
 
     @Override
     public double hitungKeliling() {
-        double kelilingAlas = 4 * sisiAlas;
-        double setengahDiagonalAlas = Math.sqrt(2 * Math.pow(sisiAlas / 2.0, 2));
-        double panjangRusukMiring = Math.sqrt(Math.pow(setengahDiagonalAlas, 2) + Math.pow(tinggiLimas, 2));
-        double totalRusukMiring =  4 *  panjangRusukMiring;
-        double keliling = kelilingAlas + totalRusukMiring;
+        double kelilingAlas = 4 * alas.getSisi();
+        double setengahDiagonal = (alas.getSisi() * Math.sqrt(2)) / 2.0;
+        double panjangRusukTegak = Math.sqrt(Math.pow(setengahDiagonal, 2) + Math.pow(tinggiLimas, 2));
+        double keliling = kelilingAlas + (4 * panjangRusukTegak);
         return keliling;
     }
 
     @Override
     public double hitungVolume() {
-        double volume = (1.0/3.0) * Math.pow(sisiAlas, 2) * tinggiLimas;
+        double volume = (1.0/3.0) * Math.pow(alas.getSisi(), 2) * tinggiLimas;
         return volume;
     }
 }
