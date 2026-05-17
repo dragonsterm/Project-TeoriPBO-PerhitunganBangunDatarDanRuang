@@ -57,4 +57,13 @@ public class HitungTask implements Runnable {
     public String getHasilAkhir() {
         return hasilAkhir;
     }
+
+    private String formatHasil(double luas, double keliling) {
+        return String.format("Luas: %.2f cm, Keliling: %.2f cm", luas, keliling);
+    }
+    
+    private String formatHasil(double luas, double keliling, double volume) {
+        return String.format("Luas Permukaan: %.2f cm, Total Panjang Rusuk: %.2f cm, Volume: %.2f cm", 
+                luas, keliling, volume);
+    }
 }
