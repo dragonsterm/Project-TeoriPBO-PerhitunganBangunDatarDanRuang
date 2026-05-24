@@ -9,7 +9,10 @@ package geometri;
  * @author mahar
  */
 public class Persegi extends BangunDatar {
-    private double sisi;
+    protected double sisi;
+    protected double luas;
+    protected double keliling;
+
 
     public Persegi(double sisi) {
         this.sisi = sisi;
@@ -23,15 +26,28 @@ public class Persegi extends BangunDatar {
         this.sisi = sisi;
     }
 
+    public double getLuas() {
+        return luas;
+    }
+
+    public double getKeliling() {
+        return keliling;
+    }
+
     @Override
     public double hitungLuas() {
-        double luas = sisi * sisi;
+        luas = sisi * sisi;
         return luas;
     }
 
     @Override
     public double hitungKeliling() {
-        double keliling = 4 * sisi;
+        keliling = 4 * sisi;
+        return keliling;
+    }
+
+    public double hitungKeliling(double sisiAlas) {
+        keliling = 4 * sisiAlas;
         return keliling;
     }
 }

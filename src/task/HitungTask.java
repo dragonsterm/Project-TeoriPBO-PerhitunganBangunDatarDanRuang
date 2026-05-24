@@ -6,6 +6,7 @@ package task;
 
 import geometri.Geometri;
 import geometri.BangunRuang;
+import geometri.Persegi;
 import java.util.Random;
 
 /**
@@ -25,7 +26,7 @@ public class HitungTask implements Runnable {
 
     @Override
     public void run() {
-        double luas, keliling, volume;
+        double luas, keliling, volume, kelilingMurni, totalRusukAtauKeliling;
         int waktuProses;
         try {
             waktuProses = random.nextInt(4000) + 1000;
@@ -33,7 +34,7 @@ public class HitungTask implements Runnable {
             Thread.sleep(waktuProses);
 
             luas = bangun.hitungLuas();
-            keliling = bangun.hitungKeliling();
+            totalRusukAtauKeliling = bangun.hitungKeliling();
 
             StringBuilder hasil = new StringBuilder();
 
@@ -41,9 +42,12 @@ public class HitungTask implements Runnable {
 
             if (bangun instanceof BangunRuang) {
                 volume = ((BangunRuang) bangun).hitungVolume();
-                hasil.append(formatHasil(luas, keliling, volume));
+                Persegi p = (Persegi) bangun;
+                kelilingMurni = p.hitungKeliling(p.getSisi());
+
+                hasil.append(formatHasil(luas, kelilingMurni, totalRusukAtauKeliling, volume));
             } else {
-                hasil.append(formatHasil(luas, keliling));
+                hasil.append(formatHasil(luas, totalRusukAtauKeliling));
             }
             this.hasilAkhir = hasil.toString();
 
@@ -62,8 +66,8 @@ public class HitungTask implements Runnable {
         return String.format("Luas: %.2f cm, Keliling: %.2f cm", luas, keliling);
     }
     
-    private String formatHasil(double luas, double keliling, double volume) {
-        return String.format("Luas Permukaan: %.2f cm, Total Panjang Rusuk: %.2f cm, Volume: %.2f cm", 
-                luas, keliling, volume);
+    private String formatHasil(double luas, double kelilingAlas, double totalRusuk, double volume) {
+        return String.format("Luas Permukaan: %.2f cm, Keliling Alas: %.2f cm, Total Panjang Rusuk: %.2f cm, Volume: %.2f cm",
+                luas, kelilingAlas , totalRusuk, volume);
     }
 }

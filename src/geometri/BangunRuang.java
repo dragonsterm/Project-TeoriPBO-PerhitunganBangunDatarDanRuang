@@ -8,12 +8,6 @@ package geometri;
  *
  * @author mahar
  */
-public abstract class BangunRuang implements Geometri {
-    @Override
-    public abstract double hitungLuas();
-
-    @Override
-    public abstract double hitungKeliling();
-
-    public abstract double hitungVolume();
+public interface BangunRuang extends Geometri {
+    double hitungVolume();
 }
