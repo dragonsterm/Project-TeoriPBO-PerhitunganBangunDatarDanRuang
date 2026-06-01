@@ -10,7 +10,7 @@ import java.util.Random;
  *
  * @author mahar
  */
-public class LimasPersegi extends Persegi implements BangunRuang, Runnable {
+public class LimasPersegi extends Persegi implements BangunRuang {
     public double tinggiLimas;
     public double luasPermukaan;
     public double totalRusuk;
