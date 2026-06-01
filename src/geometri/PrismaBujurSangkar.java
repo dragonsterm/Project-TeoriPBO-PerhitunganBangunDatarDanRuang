@@ -13,6 +13,12 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang {
         this.tinggiPrisma = tinggiPrisma;
     }
 
+    public PrismaBujurSangkar(double sisiAlas, double tinggiPrisma) {
+        super(sisiAlas);
+        this.tinggiPrisma = tinggiPrisma;
+        this.setNamaBenda("Default Prisma Bujur Sangkar");
+    }
+
     public PrismaBujurSangkar(String sisiStr, String tinggiStr) {
         super(sisiStr);
         try {

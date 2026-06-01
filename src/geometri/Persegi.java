@@ -20,6 +20,11 @@ public class Persegi extends BangunDatar implements Runnable {
         this.setNamaBenda(namaBenda);
     }
 
+    public Persegi(double sisi) {
+        this.sisi = sisi;
+        this.setNamaBenda("Default Persegi");
+    }
+
     public Persegi(String sisiStr) {
         try {
             double parsedSisi = Double.parseDouble(sisiStr);
