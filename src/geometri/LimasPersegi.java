@@ -19,7 +19,6 @@ public class LimasPersegi extends Persegi implements BangunRuang {
     public LimasPersegi(double sisiAlas, double tinggiLimas, String namaBenda) {
         super(sisiAlas, namaBenda);
         this.tinggiLimas = tinggiLimas;
-        this.tinggiLimas = tinggiLimas;
     }
 
     public LimasPersegi(double sisiAlas, double tinggiLimas) {
