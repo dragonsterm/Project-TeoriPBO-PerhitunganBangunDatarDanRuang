@@ -1,35 +1,22 @@
 package geometri;
 
-public class PrismaBujurSangkar extends Persegi implements BangunRuang {
-    private double tinggiPrisma;
-    private double luasPermukaan;
-    private double totalRusuk;
-    private double volume;
+import java.util.Random;
 
+public class PrismaBujurSangkar extends Persegi implements BangunRuang {
+    public double tinggiPrisma;
+    public double luasPermukaan;
+    public double totalRusuk;
+    public double volume;
+
+    public PrismaBujurSangkar(double sisiAlas, double tinggiPrisma, String namaBenda) {
+        super(sisiAlas, namaBenda);
+        this.tinggiPrisma = tinggiPrisma;
+    }
 
     public PrismaBujurSangkar(double sisiAlas, double tinggiPrisma) {
         super(sisiAlas);
         this.tinggiPrisma = tinggiPrisma;
-    }
-
-    public double getTinggiPrisma() {
-        return tinggiPrisma;
-    }
-
-    public void setTinggiPrisma(double tinggiPrisma) {
-        this.tinggiPrisma = tinggiPrisma;
-    }
-
-    public double getLuasPermukaan() {
-        return luasPermukaan;
-    }
-
-    public double getTotalRusuk() {
-        return totalRusuk;
-    }
-
-    public double getVolume() {
-        return volume;
+        this.setNamaBenda("Prisma Bujur Sangkar Default");
     }
 
     @Override
@@ -52,5 +39,26 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang {
     public double hitungVolume() {
         volume = super.hitungLuas() * tinggiPrisma;
         return volume;
+    }
+
+    @Override
+    public void run() {
+        Random random = new Random();
+        try {
+            int waktuProses = random.nextInt(4000) + 1000;
+            Thread.sleep(waktuProses);
+
+            double lp = hitungLuas();
+            double tr = hitungKeliling();
+            double v = hitungVolume();
+
+            String hasil = String.format("%s => Luas Permukaan: %.2f cm, Total Panjang Rusuk: %.2f cm, Volume: %.2f cm",
+                    getNamaBenda(), lp, tr, v);
+            setHasilAkhir(hasil);
+
+            System.out.println(Thread.currentThread().getName() + " selesai.");
+        } catch (InterruptedException ex) {
+            System.out.println("Thread " + getNamaBenda() + " terganggu");
+        }
     }
 }

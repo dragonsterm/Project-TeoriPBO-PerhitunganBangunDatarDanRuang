@@ -10,10 +10,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 import geometri.PrismaBujurSangkar;
-import geometri.Geometri;
 import geometri.Persegi;
 import geometri.LimasPersegi;
-import task.HitungTask;
+import geometri.BangunDatar;
 
 /**
  *
@@ -46,15 +45,15 @@ public class Main {
                     break;
                 }
                 if (pilihanMenu < 1 || pilihanMenu > 5) {
-                    System.out.println("Pilihan tidakk valid. Silahkan coba lagi.");
+                    System.out.println("Pilihan tidak valid. Silahkan coba lagi.");
                     continue;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Pilihan tidakk valid. Silahkan coba lagi.");
+                System.out.println("Pilihan tidak valid. Silahkan coba lagi.");
                 continue;
             }
 
-            System.out.print("Berapa kali perhitugan yang ingin dilakukan = ");
+            System.out.print("Berapa kali perhitungan yang ingin dilakukan = ");
             try {
                 jumlahPerhitungan = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
@@ -65,43 +64,38 @@ public class Main {
             System.out.println("\nMemulai " + jumlahPerhitungan + " iterasi perhitungan\n");
 
             List<Thread> daftarThread = new ArrayList<>();
-            List<HitungTask> daftarTask = new ArrayList<>();
+            List<BangunDatar> daftarTask = new ArrayList<>();
 
             for (int i = 1; i <= jumlahPerhitungan; i++) {
                 double sisiBangun = random.nextInt(15) + 1;
                 double tinggiBangun = random.nextInt(15) + 1;
 
                 if (pilihanMenu == 1 || pilihanMenu == 4) {
-                    Geometri bangun = new Persegi(sisiBangun);
                     String nama = String.format("Persegi ke-%d dengan sisi= %.0f cm", i, sisiBangun);
-                    HitungTask task = new HitungTask(bangun, nama);
-                    Thread thread = new Thread(task, "Thread-P" + i);
+                    Persegi bangun = new Persegi(sisiBangun, nama);
+                    Thread thread = new Thread(bangun, "Thread-P" + i);
 
-                    daftarTask.add(task);
+                    daftarTask.add(bangun);
                     daftarThread.add(thread);
                     thread.start();
-
                 }
 
                 if (pilihanMenu == 2 || pilihanMenu == 4) {
-                    Geometri bangun = new LimasPersegi(sisiBangun, tinggiBangun);
                     String nama = String.format("Limas Persegi ke-%d dengan sisi= %.0f cm dan tinggi= %.0f cm", i, sisiBangun, tinggiBangun);
-                    HitungTask task = new HitungTask(bangun, nama);
-                    Thread thread = new Thread(task, "Thread-L" + i);
+                    LimasPersegi bangun = new LimasPersegi(sisiBangun, tinggiBangun, nama);
+                    Thread thread = new Thread(bangun, "Thread-L" + i);
 
-                    daftarTask.add(task);
+                    daftarTask.add(bangun);
                     daftarThread.add(thread);
                     thread.start();
-
                 }
 
                 if (pilihanMenu == 3 || pilihanMenu == 4) {
-                    Geometri bangun = new PrismaBujurSangkar(sisiBangun, tinggiBangun);
                     String nama = String.format("Prisma Bujur Sangkar ke-%d dengan sisi= %.0f cm dan tinggi= %.0f cm", i, sisiBangun, tinggiBangun);
-                    HitungTask task = new HitungTask(bangun, nama);
-                    Thread thread = new Thread(task, "Thread-B" + i);
+                    PrismaBujurSangkar bangun = new PrismaBujurSangkar(sisiBangun, tinggiBangun, nama);
+                    Thread thread = new Thread(bangun, "Thread-B" + i);
 
-                    daftarTask.add(task);
+                    daftarTask.add(bangun);
                     daftarThread.add(thread);
                     thread.start();
                 }
@@ -131,5 +125,4 @@ public class Main {
 
         scanner.close();
     }
-
 }

@@ -4,34 +4,26 @@
  */
 package geometri;
 
+import java.util.Random;
+
 /**
  *
  * @author mahar
  */
-public class Persegi extends BangunDatar {
-    protected double sisi;
-    protected double luas;
-    protected double keliling;
+public class Persegi extends BangunDatar implements Runnable {
+    public double sisi;
+    public double luas;
+    public double keliling;
 
 
     public Persegi(double sisi) {
         this.sisi = sisi;
+        this.setNamaBenda("Persegi Default");
     }
 
-    public double getSisi() {
-        return sisi;
-    }
-
-    public void setSisi(double sisi) {
+    public Persegi(double sisi, String namaBenda) {
         this.sisi = sisi;
-    }
-
-    public double getLuas() {
-        return luas;
-    }
-
-    public double getKeliling() {
-        return keliling;
+        this.setNamaBenda(namaBenda);
     }
 
     @Override
@@ -46,8 +38,22 @@ public class Persegi extends BangunDatar {
         return keliling;
     }
 
-    public double hitungKeliling(double sisiAlas) {
-        keliling = 4 * sisiAlas;
-        return keliling;
+    @Override
+    public void run() {
+        Random random = new Random();
+        try {
+            int waktuProses = random.nextInt(4000) + 1000;
+            Thread.sleep(waktuProses);
+
+            double l = hitungLuas();
+            double k = hitungKeliling();
+
+            String hasil = String.format("%s => Luas: %.2f cm, Keliling: %.2f cm", getNamaBenda(), l, k);
+            setHasilAkhir(hasil);
+
+            System.out.println(Thread.currentThread().getName() + " selesai.");
+        } catch (InterruptedException ex) {
+            System.out.println("Thread " + getNamaBenda() + " terganggu");
+        }
     }
 }

@@ -9,6 +9,25 @@ package geometri;
  * @author mahar
  */
 public abstract class BangunDatar implements Geometri {
+    private String namaBenda;
+    private String hasilAkhir;
+
+    public void setNamaBenda(String namaBenda) {
+        this.namaBenda = namaBenda;
+    }
+
+    public String getNamaBenda() {
+        return this.namaBenda;
+    }
+
+    public void setHasilAkhir(String hasilAkhir) {
+        this.hasilAkhir = hasilAkhir;
+    }
+
+    public String getHasilAkhir() {
+        return this.hasilAkhir;
+    }
+
     @Override
     public abstract double hitungLuas();
 
