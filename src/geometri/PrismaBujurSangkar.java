@@ -13,10 +13,16 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang {
         this.tinggiPrisma = tinggiPrisma;
     }
 
-    public PrismaBujurSangkar(double sisiAlas, double tinggiPrisma) {
-        super(sisiAlas);
-        this.tinggiPrisma = tinggiPrisma;
-        this.setNamaBenda("Prisma Bujur Sangkar Default");
+    public PrismaBujurSangkar(String sisiStr, String tinggiStr) {
+        super(sisiStr);
+        try {
+            double parsedTinggi = Double.parseDouble(tinggiStr);
+            if (parsedTinggi <= 0) throw new NumberFormatException();
+            this.tinggiPrisma = parsedTinggi;
+        } catch (NumberFormatException e) {
+            System.out.println("[Error] Input tinggi Prisma tidak valid, menggunakan nilai default 1.0\n");
+            this.tinggiPrisma = 1.0;
+        }
     }
 
     @Override

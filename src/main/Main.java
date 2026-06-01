@@ -25,8 +25,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        int jumlahPerhitungan, tasksPerIterasi;
+        int jumlahPerhitungan = 1, tasksPerIterasi;
         int pilihanMenu = 0;
+        int metodeInput = 1;
 
         do {
             System.out.println("\n-- Perhitungan Persegi, Limas Persegi, dan Bujur Sangkar --");
@@ -53,51 +54,108 @@ public class Main {
                 continue;
             }
 
-            System.out.print("Berapa kali perhitungan yang ingin dilakukan = ");
+            System.out.println("\nPilih Metode Input:");
+            System.out.println("1. Random (Banyak iterasi)");
+            System.out.println("2. Manual (Hanya 1 kali perhitungan)");
+            System.out.print("Masukkan Pilihan (1-2) = ");
             try {
-                jumlahPerhitungan = Integer.parseInt(scanner.nextLine());
+                metodeInput = Integer.parseInt(scanner.nextLine());
+                if (metodeInput != 1 && metodeInput != 2) {
+                    System.out.println("Pilihan tidak valid. Otomatis menggunakan Random.");
+                    metodeInput = 1;
+                }
             } catch (NumberFormatException e) {
-                System.out.println("Input tidak valid. Menggunakan nilai default (1).");
+                System.out.println("Input tidak valid. Otomatis menggunakan Random.");
+                metodeInput = 1;
+            }
+
+            if (metodeInput == 1) {
+                System.out.print("Berapa kali perhitungan yang ingin dilakukan = ");
+                try {
+                    jumlahPerhitungan = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Input tidak valid. Menggunakan nilai default (1).");
+                    jumlahPerhitungan = 1;
+                }
+            } else {
+                System.out.println("Mode Manual dipilih. Perhitungan dilakukan 1 kali.");
                 jumlahPerhitungan = 1;
             }
 
-            System.out.println("\nMemulai " + jumlahPerhitungan + " iterasi perhitungan\n");
+            System.out.println("\nMemulai perhitungan...\n");
 
             List<Thread> daftarThread = new ArrayList<>();
             List<BangunDatar> daftarTask = new ArrayList<>();
 
             for (int i = 1; i <= jumlahPerhitungan; i++) {
-                double sisiBangun = random.nextInt(15) + 1;
-                double tinggiBangun = random.nextInt(15) + 1;
 
-                if (pilihanMenu == 1 || pilihanMenu == 4) {
-                    String nama = String.format("Persegi ke-%d dengan sisi= %.0f cm", i, sisiBangun);
-                    Persegi bangun = new Persegi(sisiBangun, nama);
-                    Thread thread = new Thread(bangun, "Thread-P" + i);
+                if (metodeInput == 1) {
+                    double sisiBangun = random.nextInt(15) + 1;
+                    double tinggiBangun = random.nextInt(15) + 1;
 
-                    daftarTask.add(bangun);
-                    daftarThread.add(thread);
-                    thread.start();
-                }
+                    if (pilihanMenu == 1 || pilihanMenu == 4) {
+                        String nama = String.format("Persegi ke-%d (Random) dengan sisi= %.0f cm", i, sisiBangun);
+                        Persegi bangun = new Persegi(sisiBangun, nama);
+                        Thread thread = new Thread(bangun, "Thread-P" + i);
+                        daftarTask.add(bangun);
+                        daftarThread.add(thread);
+                        thread.start();
+                    }
 
-                if (pilihanMenu == 2 || pilihanMenu == 4) {
-                    String nama = String.format("Limas Persegi ke-%d dengan sisi= %.0f cm dan tinggi= %.0f cm", i, sisiBangun, tinggiBangun);
-                    LimasPersegi bangun = new LimasPersegi(sisiBangun, tinggiBangun, nama);
-                    Thread thread = new Thread(bangun, "Thread-L" + i);
+                    if (pilihanMenu == 2 || pilihanMenu == 4) {
+                        String nama = String.format("Limas Persegi ke-%d (Random) dengan sisi= %.0f cm dan tinggi= %.0f cm", i, sisiBangun, tinggiBangun);
+                        LimasPersegi bangun = new LimasPersegi(sisiBangun, tinggiBangun, nama);
+                        Thread thread = new Thread(bangun, "Thread-L" + i);
+                        daftarTask.add(bangun);
+                        daftarThread.add(thread);
+                        thread.start();
+                    }
 
-                    daftarTask.add(bangun);
-                    daftarThread.add(thread);
-                    thread.start();
-                }
+                    if (pilihanMenu == 3 || pilihanMenu == 4) {
+                        String nama = String.format("Prisma Bujur Sangkar ke-%d (Random) dengan sisi= %.0f cm dan tinggi= %.0f cm", i, sisiBangun, tinggiBangun);
+                        PrismaBujurSangkar bangun = new PrismaBujurSangkar(sisiBangun, tinggiBangun, nama);
+                        Thread thread = new Thread(bangun, "Thread-B" + i);
+                        daftarTask.add(bangun);
+                        daftarThread.add(thread);
+                        thread.start();
+                    }
+                } else {
+                    System.out.println("-- Input Dimensi Bangun (Gunakan angka) --");
+                    System.out.print("Masukkan nilai sisi: ");
+                    String inputSisiStr = scanner.nextLine();
+                    String inputTinggiStr = "0";
 
-                if (pilihanMenu == 3 || pilihanMenu == 4) {
-                    String nama = String.format("Prisma Bujur Sangkar ke-%d dengan sisi= %.0f cm dan tinggi= %.0f cm", i, sisiBangun, tinggiBangun);
-                    PrismaBujurSangkar bangun = new PrismaBujurSangkar(sisiBangun, tinggiBangun, nama);
-                    Thread thread = new Thread(bangun, "Thread-B" + i);
+                    if (pilihanMenu == 2 || pilihanMenu == 3 || pilihanMenu == 4) {
+                        System.out.print("Masukkan nilai tinggi: ");
+                        inputTinggiStr = scanner.nextLine();
+                    }
 
-                    daftarTask.add(bangun);
-                    daftarThread.add(thread);
-                    thread.start();
+                    if (pilihanMenu == 1 || pilihanMenu == 4) {
+                        Persegi bangun = new Persegi(inputSisiStr);
+                        bangun.setNamaBenda("Persegi Manual (Sisi: " + inputSisiStr + ")");
+                        Thread thread = new Thread(bangun, "Thread-P-Manual");
+                        daftarTask.add(bangun);
+                        daftarThread.add(thread);
+                        thread.start();
+                    }
+
+                    if (pilihanMenu == 2 || pilihanMenu == 4) {
+                        LimasPersegi bangun = new LimasPersegi(inputSisiStr, inputTinggiStr);
+                        bangun.setNamaBenda("Limas Persegi Manual (Sisi: " + inputSisiStr + ", Tinggi: " + inputTinggiStr + ")");
+                        Thread thread = new Thread(bangun, "Thread-L-Manual");
+                        daftarTask.add(bangun);
+                        daftarThread.add(thread);
+                        thread.start();
+                    }
+
+                    if (pilihanMenu == 3 || pilihanMenu == 4) {
+                        PrismaBujurSangkar bangun = new PrismaBujurSangkar(inputSisiStr, inputTinggiStr);
+                        bangun.setNamaBenda("Prisma Bujur Sangkar Manual (Sisi: " + inputSisiStr + ", Tinggi: " + inputTinggiStr + ")");
+                        Thread thread = new Thread(bangun, "Thread-B-Manual");
+                        daftarTask.add(bangun);
+                        daftarThread.add(thread);
+                        thread.start();
+                    }
                 }
             }
 

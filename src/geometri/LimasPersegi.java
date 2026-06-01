@@ -21,10 +21,16 @@ public class LimasPersegi extends Persegi implements BangunRuang, Runnable {
         this.tinggiLimas = tinggiLimas;
     }
 
-    public LimasPersegi(double sisiAlas, double tinggiLimas) {
-        super(sisiAlas);
-        this.tinggiLimas = tinggiLimas;
-        this.setNamaBenda("Limas Persegi Default");
+    public LimasPersegi(String sisiStr, String tinggiStr) {
+        super(sisiStr);
+        try {
+            double parsedTinggi = Double.parseDouble(tinggiStr);
+            if (parsedTinggi <= 0) throw new NumberFormatException();
+            this.tinggiLimas = parsedTinggi;
+        } catch (NumberFormatException e) {
+            System.out.println("[Error] Input tinggi Limas tidak valid, menggunakan nilai default 1.0\n");
+            this.tinggiLimas = 1.0;
+        }
     }
 
     @Override
