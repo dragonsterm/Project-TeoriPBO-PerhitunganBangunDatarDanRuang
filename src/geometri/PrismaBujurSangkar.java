@@ -4,8 +4,15 @@ import java.util.Random;
 
 public class PrismaBujurSangkar extends Persegi implements BangunRuang, Runnable {
     public double tinggiPrisma;
+
     public double luasPermukaan;
+    public double luasAlas;
+    public double luasDinding;
+
     public double totalRusuk;
+    public double totalRusukTegak;
+    public double totalRusukAlasTutup;
+
     public double volume;
 
     public PrismaBujurSangkar(double sisiAlas, double tinggiPrisma, String namaBangun) {
@@ -27,16 +34,16 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang, Runnable
 
     @Override
     public double hitungLuas() {
-        double luasAlas = super.hitungLuas();
-        double luasDinding = sisi * tinggiPrisma;
+        luasAlas = super.hitungLuas();
+        luasDinding = sisi * tinggiPrisma;
         luasPermukaan = (2 * luasAlas) + (4 * luasDinding);
         return luasPermukaan;
     }
 
     @Override
     public double hitungKeliling() {
-        double totalRusukAlasTutup = 2 * super.hitungKeliling();
-        double totalRusukTegak = 4 * tinggiPrisma;
+        totalRusukAlasTutup = 2 * super.hitungKeliling();
+        totalRusukTegak = 4 * tinggiPrisma;
         totalRusuk = totalRusukAlasTutup + totalRusukTegak;
         return totalRusuk;
     }

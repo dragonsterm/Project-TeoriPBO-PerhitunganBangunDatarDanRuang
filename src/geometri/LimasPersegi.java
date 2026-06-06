@@ -12,8 +12,17 @@ import java.util.Random;
  */
 public class LimasPersegi extends Persegi implements BangunRuang, Runnable {
     public double tinggiLimas;
+
     public double luasPermukaan;
+    public double luasAlas;
+    public double tinggiSegitiga;
+    public double luasSelimut;
+
     public double totalRusuk;
+    public double kelilingAlas;
+    public double setengahDiagonal;
+    public double panjangRusukTegak;
+
     public double volume;
 
     public LimasPersegi(double sisiAlas, double tinggiLimas, String namaBangun) {
@@ -35,18 +44,18 @@ public class LimasPersegi extends Persegi implements BangunRuang, Runnable {
 
     @Override
     public double hitungLuas() {
-        double luasAlas = super.hitungLuas();
-        double tinggiSegitiga = Math.sqrt(Math.pow(sisi / 2.0, 2) + Math.pow(tinggiLimas, 2));
-        double luasSelimut = 4 * (0.5 * sisi * tinggiSegitiga);
+        luasAlas = super.hitungLuas();
+        tinggiSegitiga = Math.sqrt(Math.pow(sisi / 2.0, 2) + Math.pow(tinggiLimas, 2));
+        luasSelimut = 4 * (0.5 * sisi * tinggiSegitiga);
         luasPermukaan = luasAlas + luasSelimut;
         return luasPermukaan;
     }
 
     @Override
     public double hitungKeliling() {
-        double kelilingAlas = super.hitungKeliling();
-        double setengahDiagonal = (sisi * Math.sqrt(2)) / 2.0;
-        double panjangRusukTegak = Math.sqrt(Math.pow(setengahDiagonal, 2) + Math.pow(tinggiLimas, 2));
+        kelilingAlas = super.hitungKeliling();
+        setengahDiagonal = (sisi * Math.sqrt(2)) / 2.0;
+        panjangRusukTegak = Math.sqrt(Math.pow(setengahDiagonal, 2) + Math.pow(tinggiLimas, 2));
         totalRusuk = kelilingAlas + (4 * panjangRusukTegak);
         return totalRusuk;
     }
