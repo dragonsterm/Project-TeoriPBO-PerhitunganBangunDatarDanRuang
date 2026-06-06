@@ -25,9 +25,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        int jumlahPerhitungan = 1, tasksPerIterasi;
+        int jumlahPerhitungan, tasksPerIterasi;
         int pilihanMenu = 0;
-        int metodeInput = 1;
+        int metodeInput;
 
         do {
             System.out.println("\n-- Perhitungan Persegi, Limas Persegi, dan Bujur Sangkar --");
@@ -132,8 +132,8 @@ public class Main {
 
                     if (pilihanMenu == 1 || pilihanMenu == 4) {
                         Persegi bangun = new Persegi(inputSisiStr);
-                        bangun.setNamaBenda("Persegi Manual (Sisi: " + inputSisiStr + ")");
-                        Thread thread = new Thread(bangun, "Thread-P-Manual");
+                        bangun.namaBangun = "Persegi Manual (Sisi: " + inputSisiStr + ")";
+                        Thread thread = new Thread(bangun, "Thread-P");
                         daftarTask.add(bangun);
                         daftarThread.add(thread);
                         thread.start();
@@ -141,8 +141,8 @@ public class Main {
 
                     if (pilihanMenu == 2 || pilihanMenu == 4) {
                         LimasPersegi bangun = new LimasPersegi(inputSisiStr, inputTinggiStr);
-                        bangun.setNamaBenda("Limas Persegi Manual (Sisi: " + inputSisiStr + ", Tinggi: " + inputTinggiStr + ")");
-                        Thread thread = new Thread(bangun, "Thread-L-Manual");
+                        bangun.namaBangun = "Limas Persegi Manual (Sisi: " + inputSisiStr + ", Tinggi: " + inputTinggiStr + ")";
+                        Thread thread = new Thread(bangun, "Thread-L");
                         daftarTask.add(bangun);
                         daftarThread.add(thread);
                         thread.start();
@@ -150,8 +150,8 @@ public class Main {
 
                     if (pilihanMenu == 3 || pilihanMenu == 4) {
                         PrismaBujurSangkar bangun = new PrismaBujurSangkar(inputSisiStr, inputTinggiStr);
-                        bangun.setNamaBenda("Prisma Bujur Sangkar Manual (Sisi: " + inputSisiStr + ", Tinggi: " + inputTinggiStr + ")");
-                        Thread thread = new Thread(bangun, "Thread-B-Manual");
+                        bangun.namaBangun = "Prisma Bujur Sangkar Manual (Sisi: " + inputSisiStr + ", Tinggi: " + inputTinggiStr + ")";
+                        Thread thread = new Thread(bangun, "Thread-B");
                         daftarTask.add(bangun);
                         daftarThread.add(thread);
                         thread.start();
@@ -173,7 +173,7 @@ public class Main {
             tasksPerIterasi = (pilihanMenu == 4) ? 3 : 1;
 
             for (int i = 0; i < daftarTask.size(); i++) {
-                System.out.println(daftarTask.get(i).getHasilAkhir());
+                System.out.println(daftarTask.get(i).hasilAkhir);
 
                 if ((i + 1) % tasksPerIterasi == 0 && i < daftarTask.size() - 1) {
                     System.out.println();

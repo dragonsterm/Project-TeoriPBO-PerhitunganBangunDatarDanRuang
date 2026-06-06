@@ -15,14 +15,9 @@ public class Persegi extends BangunDatar implements Runnable {
     public double luas;
     public double keliling;
 
-    public Persegi(double sisi, String namaBenda) {
+    public Persegi(double sisi, String namaBangun) {
         this.sisi = sisi;
-        this.setNamaBenda(namaBenda);
-    }
-
-    public Persegi(double sisi) {
-        this.sisi = sisi;
-        this.setNamaBenda("Default Persegi");
+        this.namaBangun = namaBangun;
     }
 
     public Persegi(String sisiStr) {
@@ -58,12 +53,11 @@ public class Persegi extends BangunDatar implements Runnable {
             double l = hitungLuas();
             double k = hitungKeliling();
 
-            String hasil = String.format("%s => Luas: %.2f cm, Keliling: %.2f cm", getNamaBenda(), l, k);
-            setHasilAkhir(hasil);
+            this.hasilAkhir = String.format("%s => Luas: %.2f cm, Keliling: %.2f cm", this.namaBangun, l, k);
 
             System.out.println(Thread.currentThread().getName() + " selesai.");
         } catch (InterruptedException ex) {
-            System.out.println("Thread " + getNamaBenda() + " terganggu");
+            System.out.println("Thread " + this.namaBangun + " terganggu");
         }
     }
 }

@@ -10,21 +10,15 @@ import java.util.Random;
  *
  * @author mahar
  */
-public class LimasPersegi extends Persegi implements BangunRuang {
+public class LimasPersegi extends Persegi implements BangunRuang, Runnable {
     public double tinggiLimas;
     public double luasPermukaan;
     public double totalRusuk;
     public double volume;
 
-    public LimasPersegi(double sisiAlas, double tinggiLimas, String namaBenda) {
-        super(sisiAlas, namaBenda);
+    public LimasPersegi(double sisiAlas, double tinggiLimas, String namaBangun) {
+        super(sisiAlas, namaBangun);
         this.tinggiLimas = tinggiLimas;
-    }
-
-    public LimasPersegi(double sisiAlas, double tinggiLimas) {
-        super(sisiAlas);
-        this.tinggiLimas = tinggiLimas;
-        this.setNamaBenda("Default Limas Persegi");
     }
 
     public LimasPersegi(String sisiStr, String tinggiStr) {
@@ -74,13 +68,12 @@ public class LimasPersegi extends Persegi implements BangunRuang {
             double tr = hitungKeliling();
             double v = hitungVolume();
 
-            String hasil = String.format("%s => Luas Permukaan: %.2f cm, Total Panjang Rusuk: %.2f cm, Volume: %.2f cm",
-                    getNamaBenda(), lp, tr, v);
-            setHasilAkhir(hasil);
+            this.hasilAkhir = String.format("%s => Luas Permukaan: %.2f cm, Total Panjang Rusuk: %.2f cm, Volume: %.2f cm",
+                    this.namaBangun, lp, tr, v);
 
             System.out.println(Thread.currentThread().getName() + " selesai.");
         } catch (InterruptedException ex) {
-            System.out.println("Thread " + getNamaBenda() + " terganggu");
+            System.out.println("Thread " + this.namaBangun + " terganggu");
         }
     }
 }
