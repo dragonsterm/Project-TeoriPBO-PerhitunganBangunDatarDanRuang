@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package main;
+package App;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -18,7 +18,7 @@ import geometri.BangunDatar;
  *
  * @author mahar
  */
-public class Main {
+public class GeometriApp {
     /**
      * @param args the command line arguments
      */
