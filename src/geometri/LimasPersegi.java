@@ -25,14 +25,14 @@ public class LimasPersegi extends Persegi implements BangunRuang, Runnable {
 
     public double volume;
 
-    public LimasPersegi() {
-        super();
-        this.namaBangun = "Limas Persegi";
-    }
-
     public LimasPersegi(double sisiAlas, double tinggiLimas, String namaBangun) {
         super(sisiAlas, namaBangun);
         this.tinggiLimas = tinggiLimas;
+    }
+
+    public LimasPersegi() {
+        super();
+        this.namaBangun = "Limas Persegi";
     }
 
     @Override

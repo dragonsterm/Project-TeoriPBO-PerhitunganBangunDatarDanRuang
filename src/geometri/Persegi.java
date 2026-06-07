@@ -15,13 +15,13 @@ public class Persegi extends BangunDatar implements Runnable {
     public double luas;
     public double keliling;
 
-    public Persegi() {
-        this.namaBangun = "Persegi";
-    }
-
     public Persegi(double sisi, String namaBangun) {
         this.sisi = sisi;
         this.namaBangun = namaBangun;
+    }
+
+    public Persegi() {
+        this.namaBangun = "Persegi";
     }
 
     @Override

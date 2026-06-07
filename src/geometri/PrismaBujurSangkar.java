@@ -15,14 +15,14 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang, Runnable
 
     public double volume;
 
-    public PrismaBujurSangkar() {
-        super();
-        this.namaBangun = "Prisma Bujur Sangkar";
-    }
-
     public PrismaBujurSangkar(double sisiAlas, double tinggiPrisma, String namaBangun) {
         super(sisiAlas, namaBangun);
         this.tinggiPrisma = tinggiPrisma;
+    }
+
+    public PrismaBujurSangkar() {
+        super();
+        this.namaBangun = "Prisma Bujur Sangkar";
     }
 
     @Override
