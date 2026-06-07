@@ -44,12 +44,14 @@ public class Persegi extends BangunDatar implements Runnable {
     @Override
     public void run() {
         Random random = new Random();
+        double l, k;
+        int waktuProses;
         try {
-            int waktuProses = random.nextInt(4000) + 1000;
+            waktuProses = random.nextInt(4000) + 1000;
             Thread.sleep(waktuProses);
 
-            double l = hitungLuas();
-            double k = hitungKeliling();
+            l = hitungLuas();
+            k = hitungKeliling();
 
             this.hasilAkhir = String.format("%s => Luas: %.2f cm, Keliling: %.2f cm", this.namaBangun, l, k);
 
