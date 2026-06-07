@@ -56,7 +56,7 @@ public class Main {
 
             System.out.println("\nPilih Metode Input:");
             System.out.println("1. Random (Banyak iterasi)");
-            System.out.println("2. Manual (Hanya 1 kali perhitungan)");
+            System.out.println("2. Hardcode Overloading (Hanya Luas, 5 kali per bangun)");
             System.out.print("Masukkan Pilihan (1-2) = ");
             try {
                 metodeInput = Integer.parseInt(scanner.nextLine());
@@ -120,41 +120,40 @@ public class Main {
                         thread.start();
                     }
                 } else {
-                    System.out.println("-- Input Dimensi Bangun (Gunakan angka) --");
-                    System.out.print("Masukkan nilai sisi: ");
-                    String inputSisiStr = scanner.nextLine();
-                    String inputTinggiStr = "0";
-
-                    if (pilihanMenu == 2 || pilihanMenu == 3 || pilihanMenu == 4) {
-                        System.out.print("Masukkan nilai tinggi: ");
-                        inputTinggiStr = scanner.nextLine();
-                    }
-
                     if (pilihanMenu == 1 || pilihanMenu == 4) {
-                        Persegi bangun = new Persegi(inputSisiStr);
-                        bangun.namaBangun = "Persegi Manual (Sisi: " + inputSisiStr + ")";
-                        Thread thread = new Thread(bangun, "Thread-P");
-                        daftarTask.add(bangun);
-                        daftarThread.add(thread);
-                        thread.start();
+                        Persegi p = new Persegi();
+                        Thread tp1 = new Thread(() -> System.out.printf("Thread-P1 => Luas Persegi: %.2f%n", p.hitungLuas(5)));
+                        Thread tp2 = new Thread(() -> System.out.printf("Thread-P2 => Luas Persegi: %.2f%n", p.hitungLuas(8)));
+                        Thread tp3 = new Thread(() -> System.out.printf("Thread-P3 => Luas Persegi: %.2f%n", p.hitungLuas(9)));
+                        Thread tp4 = new Thread(() -> System.out.printf("Thread-P4 => Luas Persegi: %.2f%n", p.hitungLuas(12)));
+                        Thread tp5 = new Thread(() -> System.out.printf("Thread-P5 => Luas Persegi: %.2f%n", p.hitungLuas(15)));
+
+                        tp1.start(); tp2.start(); tp3.start(); tp4.start(); tp5.start();
+                        daftarThread.addAll(List.of(tp1, tp2, tp3, tp4, tp5));
                     }
 
                     if (pilihanMenu == 2 || pilihanMenu == 4) {
-                        LimasPersegi bangun = new LimasPersegi(inputSisiStr, inputTinggiStr);
-                        bangun.namaBangun = "Limas Persegi Manual (Sisi: " + inputSisiStr + ", Tinggi: " + inputTinggiStr + ")";
-                        Thread thread = new Thread(bangun, "Thread-L");
-                        daftarTask.add(bangun);
-                        daftarThread.add(thread);
-                        thread.start();
+                        LimasPersegi l = new LimasPersegi();
+                        Thread tl1 = new Thread(() -> System.out.printf("Thread-L1 => Luas Limas Persegi: %.2f%n", l.hitungLuas(5, 10)));
+                        Thread tl2 = new Thread(() -> System.out.printf("Thread-L2 => Luas Limas Persegi: %.2f%n", l.hitungLuas(8, 12)));
+                        Thread tl3 = new Thread(() -> System.out.printf("Thread-L3 => Luas Limas Persegi: %.2f%n", l.hitungLuas(9, 15)));
+                        Thread tl4 = new Thread(() -> System.out.printf("Thread-L4 => Luas Limas Persegi: %.2f%n", l.hitungLuas(12, 10)));
+                        Thread tl5 = new Thread(() -> System.out.printf("Thread-L5 => Luas Limas Persegi: %.2f%n", l.hitungLuas(15, 20)));
+
+                        tl1.start(); tl2.start(); tl3.start(); tl4.start(); tl5.start();
+                        daftarThread.addAll(List.of(tl1, tl2, tl3, tl4, tl5));
                     }
 
                     if (pilihanMenu == 3 || pilihanMenu == 4) {
-                        PrismaBujurSangkar bangun = new PrismaBujurSangkar(inputSisiStr, inputTinggiStr);
-                        bangun.namaBangun = "Prisma Bujur Sangkar Manual (Sisi: " + inputSisiStr + ", Tinggi: " + inputTinggiStr + ")";
-                        Thread thread = new Thread(bangun, "Thread-B");
-                        daftarTask.add(bangun);
-                        daftarThread.add(thread);
-                        thread.start();
+                        PrismaBujurSangkar b = new PrismaBujurSangkar();
+                        Thread tb1 = new Thread(() -> System.out.printf("Thread-B1 => Luas Prisma: %.2f%n", b.hitungLuas(5, 10)));
+                        Thread tb2 = new Thread(() -> System.out.printf("Thread-B2 => Luas Prisma: %.2f%n", b.hitungLuas(8, 12)));
+                        Thread tb3 = new Thread(() -> System.out.printf("Thread-B3 => Luas Prisma: %.2f%n", b.hitungLuas(9, 15)));
+                        Thread tb4 = new Thread(() -> System.out.printf("Thread-B4 => Luas Prisma: %.2f%n", b.hitungLuas(12, 10)));
+                        Thread tb5 = new Thread(() -> System.out.printf("Thread-B5 => Luas Prisma: %.2f%n", b.hitungLuas(15, 20)));
+
+                        tb1.start(); tb2.start(); tb3.start(); tb4.start(); tb5.start();
+                        daftarThread.addAll(List.of(tb1, tb2, tb3, tb4, tb5));
                     }
                 }
             }

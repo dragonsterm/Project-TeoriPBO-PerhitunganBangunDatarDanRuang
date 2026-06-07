@@ -15,24 +15,22 @@ public class Persegi extends BangunDatar implements Runnable {
     public double luas;
     public double keliling;
 
+    public Persegi() {
+        this.namaBangun = "Persegi";
+    }
+
     public Persegi(double sisi, String namaBangun) {
         this.sisi = sisi;
         this.namaBangun = namaBangun;
     }
 
-    public Persegi(String sisiStr) {
-        try {
-            double parsedSisi = Double.parseDouble(sisiStr);
-            if (parsedSisi <= 0) throw new NumberFormatException();
-            this.sisi = parsedSisi;
-        } catch (NumberFormatException e) {
-            System.out.println("[Error] Input sisi Persegi tidak valid, menggunakan nilai default 1.0\n");
-            this.sisi = 1.0;
-        }
-    }
-
     @Override
     public double hitungLuas() {
+        luas = sisi * sisi;
+        return luas;
+    }
+
+    public double hitungLuas(double sisi) {
         luas = sisi * sisi;
         return luas;
     }

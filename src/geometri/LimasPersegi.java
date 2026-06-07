@@ -25,26 +25,27 @@ public class LimasPersegi extends Persegi implements BangunRuang, Runnable {
 
     public double volume;
 
+    public LimasPersegi() {
+        super();
+        this.namaBangun = "Limas Persegi";
+    }
+
     public LimasPersegi(double sisiAlas, double tinggiLimas, String namaBangun) {
         super(sisiAlas, namaBangun);
         this.tinggiLimas = tinggiLimas;
     }
 
-    public LimasPersegi(String sisiStr, String tinggiStr) {
-        super(sisiStr);
-        try {
-            double parsedTinggi = Double.parseDouble(tinggiStr);
-            if (parsedTinggi <= 0) throw new NumberFormatException();
-            this.tinggiLimas = parsedTinggi;
-        } catch (NumberFormatException e) {
-            System.out.println("[Error] Input tinggi Limas tidak valid, menggunakan nilai default 1.0\n");
-            this.tinggiLimas = 1.0;
-        }
-    }
-
     @Override
     public double hitungLuas() {
         luasAlas = super.hitungLuas();
+        tinggiSegitiga = Math.sqrt(Math.pow(sisi / 2.0, 2) + Math.pow(tinggiLimas, 2));
+        luasSelimut = 4 * (0.5 * sisi * tinggiSegitiga);
+        luasPermukaan = luasAlas + luasSelimut;
+        return luasPermukaan;
+    }
+
+    public double hitungLuas(double sisi, double tinggiLimas) {
+        luasAlas = super.hitungLuas(sisi);
         tinggiSegitiga = Math.sqrt(Math.pow(sisi / 2.0, 2) + Math.pow(tinggiLimas, 2));
         luasSelimut = 4 * (0.5 * sisi * tinggiSegitiga);
         luasPermukaan = luasAlas + luasSelimut;
@@ -62,7 +63,7 @@ public class LimasPersegi extends Persegi implements BangunRuang, Runnable {
 
     @Override
     public double hitungVolume() {
-        volume = (1.0/3.0) * super.hitungLuas() * tinggiLimas;
+        volume = (1.0/3.0) * luasAlas * tinggiLimas;
         return volume;
     }
 

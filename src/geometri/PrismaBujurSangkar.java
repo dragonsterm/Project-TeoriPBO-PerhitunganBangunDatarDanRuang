@@ -15,26 +15,26 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang, Runnable
 
     public double volume;
 
+    public PrismaBujurSangkar() {
+        super();
+        this.namaBangun = "Prisma Bujur Sangkar";
+    }
+
     public PrismaBujurSangkar(double sisiAlas, double tinggiPrisma, String namaBangun) {
         super(sisiAlas, namaBangun);
         this.tinggiPrisma = tinggiPrisma;
     }
 
-    public PrismaBujurSangkar(String sisiStr, String tinggiStr) {
-        super(sisiStr);
-        try {
-            double parsedTinggi = Double.parseDouble(tinggiStr);
-            if (parsedTinggi <= 0) throw new NumberFormatException();
-            this.tinggiPrisma = parsedTinggi;
-        } catch (NumberFormatException e) {
-            System.out.println("[Error] Input tinggi Prisma tidak valid, menggunakan nilai default 1.0\n");
-            this.tinggiPrisma = 1.0;
-        }
-    }
-
     @Override
     public double hitungLuas() {
         luasAlas = super.hitungLuas();
+        luasDinding = sisi * tinggiPrisma;
+        luasPermukaan = (2 * luasAlas) + (4 * luasDinding);
+        return luasPermukaan;
+    }
+
+    public double hitungLuas(double sisi, double tinggiPrisma) {
+        luasAlas = super.hitungLuas(sisi);
         luasDinding = sisi * tinggiPrisma;
         luasPermukaan = (2 * luasAlas) + (4 * luasDinding);
         return luasPermukaan;
@@ -50,7 +50,7 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang, Runnable
 
     @Override
     public double hitungVolume() {
-        volume = super.hitungLuas() * tinggiPrisma;
+        volume = luasAlas * tinggiPrisma;
         return volume;
     }
 
