@@ -78,7 +78,7 @@ public class GeometriApp {
                     jumlahPerhitungan = 1;
                 }
             } else {
-                System.out.println("Mode Manual dipilih. Perhitungan dilakukan 1 kali.");
+                System.out.println("Mode Manual dipilih");
                 jumlahPerhitungan = 1;
             }
 
