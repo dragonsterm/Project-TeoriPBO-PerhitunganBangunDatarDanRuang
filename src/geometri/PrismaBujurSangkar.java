@@ -4,15 +4,8 @@ import java.util.Random;
 
 public class PrismaBujurSangkar extends Persegi implements BangunRuang, Runnable {
     public double tinggiPrisma;
-
     public double luasPermukaan;
-    public double luasAlas;
-    public double luasDinding;
-
     public double totalRusuk;
-    public double totalRusukTegak;
-    public double totalRusukAlasTutup;
-
     public double volume;
 
     public PrismaBujurSangkar(double sisiAlas, double tinggiPrisma, String namaBangun) {
@@ -27,30 +20,25 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang, Runnable
 
     @Override
     public double hitungLuas() {
-        luasAlas = super.hitungLuas();
-        luasDinding = sisi * tinggiPrisma;
-        luasPermukaan = (2 * luasAlas) + (4 * luasDinding);
+        luasPermukaan = (2 * luas) + (4 * sisi * tinggiPrisma);
         return luasPermukaan;
     }
 
     public double hitungLuas(double sisi, double tinggiPrisma) {
-        luasAlas = super.hitungLuas(sisi);
-        luasDinding = sisi * tinggiPrisma;
-        luasPermukaan = (2 * luasAlas) + (4 * luasDinding);
+        double luasAlas = super.hitungLuas(sisi);
+        luasPermukaan = (2 * luasAlas) + (4 * sisi * tinggiPrisma);
         return luasPermukaan;
     }
 
     @Override
     public double hitungKeliling() {
-        totalRusukAlasTutup = 2 * super.hitungKeliling();
-        totalRusukTegak = 4 * tinggiPrisma;
-        totalRusuk = totalRusukAlasTutup + totalRusukTegak;
+        totalRusuk = (2 * super.hitungKeliling()) + (4 * tinggiPrisma);
         return totalRusuk;
     }
 
     @Override
     public double hitungVolume() {
-        volume = luasAlas * tinggiPrisma;
+        volume = luas * tinggiPrisma;
         return volume;
     }
 
@@ -60,6 +48,8 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang, Runnable
         try {
             int waktuProses = random.nextInt(4000) + 1000;
             Thread.sleep(waktuProses);
+
+            super.hitungLuas();
 
             double lp = hitungLuas();
             double tr = hitungKeliling();
