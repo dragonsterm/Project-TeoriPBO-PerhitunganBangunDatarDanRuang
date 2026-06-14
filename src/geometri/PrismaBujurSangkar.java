@@ -48,7 +48,6 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang, Runnable
     @Override
     public void run() {
         Random random = new Random();
-        double lp, tr, v;
         int waktuProses;
         try {
             waktuProses = random.nextInt(4000) + 1000;
@@ -56,12 +55,12 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang, Runnable
 
             super.hitungLuas();
 
-            lp = hitungLuas();
-            tr = hitungKeliling();
-            v = hitungVolume();
+            hitungLuas();
+            hitungKeliling();
+            hitungVolume();
 
             this.hasilAkhir = String.format("%s => Luas Permukaan: %.2f cm, Total Panjang Rusuk: %.2f cm, Volume: %.2f cm",
-                    this.namaBangun, lp, tr, v);
+                    this.namaBangun, this.luasPermukaan, this.totalRusuk, this.volume);
 
             System.out.println(Thread.currentThread().getName() + " selesai.");
         } catch (InterruptedException ex) {
