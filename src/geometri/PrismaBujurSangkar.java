@@ -19,7 +19,10 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang, Runnable
     }
 
     @Override
-    public double hitungLuas() {
+    public double hitungLuas() throws AngkaInvalidException {
+        if (this.tinggiPrisma <= 0) {
+            throw new AngkaInvalidException("Tinggi Prisma tidak boleh nol atau negatif!");
+        }
         luasPermukaan = (2 * luas) + (4 * sisi * tinggiPrisma);
         return luasPermukaan;
     }
@@ -63,6 +66,8 @@ public class PrismaBujurSangkar extends Persegi implements BangunRuang, Runnable
             System.out.println(Thread.currentThread().getName() + " selesai.");
         } catch (InterruptedException ex) {
             System.out.println("Thread " + this.namaBangun + " terganggu");
+        } catch (AngkaInvalidException ex) {
+            System.err.println(Thread.currentThread().getName() + " Error: " + ex.getMessage());
         }
     }
 }

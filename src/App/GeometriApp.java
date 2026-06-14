@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
+import geometri.Geometri;
 import geometri.PrismaBujurSangkar;
 import geometri.Persegi;
 import geometri.LimasPersegi;
@@ -85,7 +86,7 @@ public class GeometriApp {
             System.out.println("\nMemulai perhitungan...\n");
 
             List<Thread> daftarThread = new ArrayList<>();
-            List<BangunDatar> daftarTask = new ArrayList<>();
+            List<Geometri> daftarTask = new ArrayList<>();
 
             for (int i = 1; i <= jumlahPerhitungan; i++) {
 
@@ -95,8 +96,8 @@ public class GeometriApp {
 
                     if (pilihanMenu == 1 || pilihanMenu == 4) {
                         String nama = String.format("Persegi ke-%d (Random) dengan sisi= %.0f cm", i, sisiBangun);
-                        Persegi bangun = new Persegi(sisiBangun, nama);
-                        Thread thread = new Thread(bangun, "Thread-P" + i);
+                        Geometri bangun = new Persegi(sisiBangun, nama);
+                        Thread thread = new Thread((Runnable) bangun, "Thread-P" + i);
                         daftarTask.add(bangun);
                         daftarThread.add(thread);
                         thread.start();
@@ -104,8 +105,8 @@ public class GeometriApp {
 
                     if (pilihanMenu == 2 || pilihanMenu == 4) {
                         String nama = String.format("Limas Persegi ke-%d (Random) dengan sisi= %.0f cm dan tinggi= %.0f cm", i, sisiBangun, tinggiBangun);
-                        LimasPersegi bangun = new LimasPersegi(sisiBangun, tinggiBangun, nama);
-                        Thread thread = new Thread(bangun, "Thread-L" + i);
+                        Geometri bangun = new LimasPersegi(sisiBangun, tinggiBangun, nama);
+                        Thread thread = new Thread((Runnable) bangun, "Thread-L" + i);
                         daftarTask.add(bangun);
                         daftarThread.add(thread);
                         thread.start();
@@ -113,8 +114,8 @@ public class GeometriApp {
 
                     if (pilihanMenu == 3 || pilihanMenu == 4) {
                         String nama = String.format("Prisma Bujur Sangkar ke-%d (Random) dengan sisi= %.0f cm dan tinggi= %.0f cm", i, sisiBangun, tinggiBangun);
-                        PrismaBujurSangkar bangun = new PrismaBujurSangkar(sisiBangun, tinggiBangun, nama);
-                        Thread thread = new Thread(bangun, "Thread-B" + i);
+                        Geometri bangun = new PrismaBujurSangkar(sisiBangun, tinggiBangun, nama);
+                        Thread thread = new Thread((Runnable) bangun, "Thread-B" + i);
                         daftarTask.add(bangun);
                         daftarThread.add(thread);
                         thread.start();
@@ -172,7 +173,10 @@ public class GeometriApp {
             tasksPerIterasi = (pilihanMenu == 4) ? 3 : 1;
 
             for (int i = 0; i < daftarTask.size(); i++) {
-                System.out.println(daftarTask.get(i).hasilAkhir);
+                Geometri task = daftarTask.get(i);
+                if (task instanceof BangunDatar) {
+                    System.out.println(((BangunDatar) task).hasilAkhir);
+                }
 
                 if ((i + 1) % tasksPerIterasi == 0 && i < daftarTask.size() - 1) {
                     System.out.println();

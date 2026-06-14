@@ -25,7 +25,10 @@ public class Persegi extends BangunDatar implements Runnable {
     }
 
     @Override
-    public double hitungLuas() {
+    public double hitungLuas() throws AngkaInvalidException {
+        if (this.sisi <= 0) {
+            throw new AngkaInvalidException("Sisi persegi tidak boleh nol atau negatif!");
+        }
         luas = sisi * sisi;
         return luas;
     }
@@ -58,6 +61,8 @@ public class Persegi extends BangunDatar implements Runnable {
             System.out.println(Thread.currentThread().getName() + " selesai.");
         } catch (InterruptedException ex) {
             System.out.println("Thread " + this.namaBangun + " terganggu");
+        } catch (AngkaInvalidException ex) {
+            System.err.println(Thread.currentThread().getName() + " Error: " + ex.getMessage());
         }
     }
 }

@@ -27,7 +27,10 @@ public class LimasPersegi extends Persegi implements BangunRuang, Runnable {
     }
 
     @Override
-    public double hitungLuas() {
+    public double hitungLuas() throws AngkaInvalidException {
+        if (this.tinggiLimas <= 0) {
+            throw new AngkaInvalidException("Tinggi Limas Persegi tidak boleh nol atau negatif!");
+        }
         luasPermukaan = luas + (2 * sisi * Math.sqrt(Math.pow(sisi / 2.0, 2) + Math.pow(tinggiLimas, 2)));
         return luasPermukaan;
     }
@@ -72,6 +75,8 @@ public class LimasPersegi extends Persegi implements BangunRuang, Runnable {
             System.out.println(Thread.currentThread().getName() + " selesai.");
         } catch (InterruptedException ex) {
             System.out.println("Thread " + this.namaBangun + " terganggu");
+        } catch (AngkaInvalidException ex) {
+            System.err.println(Thread.currentThread().getName() + " Error: " + ex.getMessage());
         }
     }
 }

@@ -9,6 +9,6 @@ package geometri;
  * @author mahar
  */
 public interface Geometri {
-    double hitungLuas();
+    double hitungLuas() throws AngkaInvalidException;
     double hitungKeliling();
 }

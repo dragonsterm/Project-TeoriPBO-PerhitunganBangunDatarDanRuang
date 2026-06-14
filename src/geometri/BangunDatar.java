@@ -13,7 +13,7 @@ public abstract class BangunDatar implements Geometri {
     public String hasilAkhir;
 
     @Override
-    public abstract double hitungLuas();
+    public abstract double hitungLuas() throws AngkaInvalidException;
 
     @Override
     public abstract double hitungKeliling();
